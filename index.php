@@ -28,7 +28,7 @@
       <table>
         <tr>
           <td class="datafields">Title:</td>
-          <td><input type="text" name="btitle" id="btitle" width="50"/></td>
+          <td><input type="text" name="btitle" id="btitle" size="50"/></td>
         </tr>
         <tr>
           <td class="datafields">Author:</td>
@@ -39,7 +39,7 @@
         </tr>
         <tr>
           <td class="datafields">Publisher:</td>
-          <td><input type="text" name="publisher" id="publisher" width="50"/></td>
+          <td><input type="text" name="publisher" id="publisher" size="50"/></td>
         </tr>
         <tr>
           <td class="datafields">Year:</td>
