@@ -28,7 +28,7 @@
       <table>
         <tr>
           <td class="datafields">Title:</td>
-          <td><input type="text" name="btitle" id="btitle"/></td>
+          <td><input type="text" name="btitle" id="btitle" width="50"/></td>
         </tr>
         <tr>
           <td class="datafields">Author:</td>
@@ -39,7 +39,7 @@
         </tr>
         <tr>
           <td class="datafields">Publisher:</td>
-          <td><input type="text" name="publisher" id="publisher"/></td>
+          <td><input type="text" name="publisher" id="publisher" width="50"/></td>
         </tr>
         <tr>
           <td class="datafields">Year:</td>
@@ -54,6 +54,7 @@
           <td><input type="text" name="pubcountry" id="pubcountry"/></td>
         </tr>
       </table>
+      <br><br>
       <input type="submit" name="submit" value="Submit" />
       <input type="submit" name="load_data" value="Load Data" />
     </form>
@@ -107,21 +108,25 @@
                 $stmt = $conn->query($sql_select);
                 $books = $stmt->fetchAll();
                 if(count($books) > 0) {
-                    echo "<h2>Book Colleciton:</h2>";
+                    echo "<h2>Book Collection:</h2>";
                     echo "<table>";
                     echo "<tr><th>Title</th>";
                     echo "<th>Author</th>";
                     echo "<th>Publisher</th>";
                     echo "<th>Year</th></tr>";
                     foreach($books as $book) {
-                        echo "<tr><td>".$book['title']."</td>";
-                        echo "<td>". ($book['a_name']!=='')?$book['a_fam'].", ":"" . $book['a_name']. "</td>";
-                        echo "<td>".
-                             $book['publisher'].
-                             ($book['pubcity']!=='') ? ", ".$book['pubcity'] : "" .
-                             ($book['pubcountry']!=='') ? ", ".$book['pubcountry'] : "" .
-                             "</td>";
-                        echo "<td>".$book['pubyear']."</td></tr>";
+                        $auth = "";
+                        if( $book['a_fam']!=='' ) $auth .= $book['a_fam'] . ", ";
+                        $auth .= $book['a_name'];
+
+                        $publ = $book['publisher'];
+                        if( $book['pubcity']!=='' ) $publ .= ", " . $book['pubcity'];
+                        if( $book['pubcountry']!=='' ) $publ .= ", " . $book['pubcountry'];
+
+                        echo "<tr><td>". $book['title'] ."</td>";
+                        echo "<td>". $auth ."</td>";
+                        echo "<td>". $publ ."</td>";
+                        echo "<td>". $book['pubyear'] ."</td></tr>";
                     }
                     echo "</table>";
                 } else {
