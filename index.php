@@ -16,6 +16,7 @@
     table { margin-top: 0.75em; }
     th { font-size: 1.2em; text-align: left; border: none; padding-left: 0; }
     td { padding: 0.25em 2em 0.25em 0em; border: 0 none; }
+    td.datafields { text-align: right;}
     </style>
 
   </head>
@@ -24,14 +25,35 @@
     <h1>Entri New Book</h1>
 
     <form method="post" action="index.php" enctype="multipart/form-data" >
-      Title <input type="text" name="btitle" id="btitle"/></br></br>
-      Author <br>
-      Nama Depan <input type="text" name="a_name" id="a_name"/><br>
-      Nama Belakang <input type="text" name="a_fam" id="a_fam"/></br></br>
-      Publisher <input type="text" name="publisher" id="publisher"/></br></br>
-      Year <input type="text" name="pubyear" id="pubyear"/></br></br>
-      City <input type="text" name="pubcity" id="pubcity"/></br></br>
-      Country <input type="text" name="pubcountry" id="pubcountry"/></br></br>
+      <table>
+        <tr>
+          <td class="datafields">Title:</td>
+          <td><input type="text" name="btitle" id="btitle"/></td>
+        </tr>
+        <tr>
+          <td class="datafields">Author:</td>
+          <td>
+            Nama Depan <input type="text" name="a_name" id="a_name"/><br>
+            Nama Belakang <input type="text" name="a_fam" id="a_fam"/>
+          </td>
+        </tr>
+        <tr>
+          <td class="datafields">Publisher:</td>
+          <td><input type="text" name="publisher" id="publisher"/></td>
+        </tr>
+        <tr>
+          <td class="datafields">Year:</td>
+          <td><input type="text" name="pubyear" id="pubyear"/></td>
+        </tr>
+        <tr>
+          <td class="datafields">City:</td>
+          <td><input type="text" name="pubcity" id="pubcity"/></td>
+        </tr>
+        <tr>
+          <td class="datafields">Country:</td>
+          <td><input type="text" name="pubcountry" id="pubcountry"/></td>
+        </tr>
+      </table>
       <input type="submit" name="submit" value="Submit" />
       <input type="submit" name="load_data" value="Load Data" />
     </form>
