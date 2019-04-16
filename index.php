@@ -58,5 +58,79 @@
       <input type="submit" name="load_data" value="Load Data" />
     </form>
 
+    <?php
+        $host = "tcp:sofyandb.database.windows.net,1433";
+        $user = "dbadmin";
+        $pass = "DicodingDicoding19";
+        $db = "myminilib";
+        try {
+            $conn = new PDO("sqlsrv:server = $host; Database = $db", $user, $pass);
+            $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+        } catch(Exception $e) {
+            echo "Failed: " . $e;
+        }
+
+        if (isset($_POST['submit'])) {
+            try {
+                $title = $_POST['btitle'];
+                $author_name = $_POST['a_name'];
+                $author_fam = $_POST['a_fam'];
+                $publisher = $_POST['publisher'];
+                $pubyear = $_POST['pubyear'];
+                $pubcity = $_POST['pubcity'];
+                $pubcountry = $_POST['pubcountry'];
+
+                // Insert data
+                $sql_insert = "INSERT INTO Books (title, a_name, a_fam, publisher, pubyear, pubcity, pubcountry )
+                               VALUES (?,?,?,?,?,?,?)";
+
+                $stmt = $conn->prepare($sql_insert);
+                $stmt->bindValue(1, $title);
+                $stmt->bindValue(2, $author_name);
+                $stmt->bindValue(3, $author_fam);
+                $stmt->bindValue(4, $publisher);
+                $stmt->bindValue(5, $pubyear);
+                $stmt->bindValue(6, $pubcity);
+                $stmt->bindValue(7, $pubcountry);
+
+                $stmt->execute();
+
+            } catch(Exception $e) {
+                echo "Database Failed: " . $e;
+            }
+            echo "<h3>New book item added.</h3>";
+
+        } else if (isset($_POST['load_data'])) {
+
+            try {
+                $sql_select = "SELECT * FROM Books";
+                $stmt = $conn->query($sql_select);
+                $books = $stmt->fetchAll();
+                if(count($books) > 0) {
+                    echo "<h2>Book Colleciton:</h2>";
+                    echo "<table>";
+                    echo "<tr><th>Title</th>";
+                    echo "<th>Author</th>";
+                    echo "<th>Publisher</th>";
+                    echo "<th>Year</th></tr>";
+                    foreach($books as $book) {
+                        echo "<tr><td>".$book['title']."</td>";
+                        echo "<td>". ($book['a_name']!=='')?$book['a_fam'].", ":"" . $book['a_name']. "</td>";
+                        echo "<td>".
+                             $book['publisher'].
+                             ($book['pubcity']!=='') ? ", ".$book['pubcity'] : "" .
+                             ($book['pubcountry']!=='') ? ", ".$book['pubcountry'] : "" .
+                             "</td>";
+                        echo "<td>".$book['pubyear']."</td></tr>";
+                    }
+                    echo "</table>";
+                } else {
+                    echo "<h3>No books yet.</h3>";
+                }
+            } catch(Exception $e) {
+                echo "Database Failed: " . $e;
+            }
+        }
+     ?>
   </body>
 </html>
