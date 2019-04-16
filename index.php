@@ -28,13 +28,13 @@
       <table>
         <tr>
           <td class="datafields">Title:</td>
-          <td><input type="text" name="btitle" id="btitle" size="80"/></td>
+          <td><input type="text" name="btitle" id="btitle" size="75"/></td>
         </tr>
         <tr>
           <td class="datafields">Author:</td>
           <td>
-            Nama Depan <input type="text" name="a_name" id="a_name"/>
-            Nama Belakang <input type="text" name="a_fam" id="a_fam"/>
+            First Name:<input type="text" name="a_name" id="a_name"/>
+            Last Name:<input type="text" name="a_fam" id="a_fam"/>
           </td>
         </tr>
         <tr>
