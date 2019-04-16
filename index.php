@@ -26,7 +26,7 @@
     <form method="post" action="index.php" enctype="multipart/form-data" >
       Title <input type="text" name="btitle" id="btitle"/></br></br>
       Author <br>
-      Nama Depan <input type="text" name="a_name" id="a_name"/>
+      Nama Depan <input type="text" name="a_name" id="a_name"/><br>
       Nama Belakang <input type="text" name="a_fam" id="a_fam"/></br></br>
       Publisher <input type="text" name="publisher" id="publisher"/></br></br>
       Year <input type="text" name="pubyear" id="pubyear"/></br></br>
